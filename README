@@ -1,0 +1,22 @@
+NOTE: This plugin is a work in progress and should not be used in production
+yet.  Feel free to fork on GitHub and send patches.
+
+If you would like to see your code in the main project it MUST be tested.
+If you find a bug, a test exposing the bug would be great.
+
+= acts_as_indestructible
+
+  acts_as_indestructible aims to be a working version
+  of the acts_as_paranoid idea, which is to mark ActiveRecord objects
+  as deleted instead of actually deleting them from the database.
+  
+  After an object is marked as deleted it should be excluded from
+  all of the ActiveRecord method calls and act as if it
+  was actually deleted from the database.
+  
+  It may also be desirable to have an additional optional parameter
+  on finders to include deleted objects (ie. :include_deleted => true)
+  for places that need to see deleted objects, like admin areas.
+  
+  Each overridden ActiveRecord method will be tested to make sure
+  it behaves properly.
