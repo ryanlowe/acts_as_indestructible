@@ -13,6 +13,12 @@ module ActiveRecord #:nodoc:
       end
       
       module SingletonMethods
+        def delete(id)
+          raise "Is not allowed"
+        end
+        def delete_all(conditions = nil)
+          raise "Is not allowed"
+        end
       end
       
       module InstanceMethods

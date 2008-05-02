@@ -12,6 +12,10 @@ class ActsAsIndestructibleTest < Test::Unit::TestCase
     assert !comments(:parent).destroyed?
   end
   
+  #
+  # destroy
+  #
+  
   def test_destroy
     assert !posts(:hello).destroyed?
     
@@ -39,6 +43,36 @@ class ActsAsIndestructibleTest < Test::Unit::TestCase
     
     assert  posts(:deleted).reload.destroyed?
     assert  posts(:hello).reload.destroyed?
+  end
+  
+  #
+  # delete
+  #
+  
+  def test_delete_not_allowed
+    assert !posts(:hello).destroyed?
+    assert Post.exists?(posts(:hello).id)
+    
+    assert_raises(RuntimeError) {
+      Post.delete(posts(:hello).id)
+    }
+
+    assert Post.exists?(posts(:hello).id)
+    assert !posts(:hello).reload.destroyed?
+  end
+  
+  def test_delete_all_not_allowed
+    assert  posts(:deleted).destroyed?
+    assert !posts(:hello).destroyed?
+    assert Post.exists?(posts(:hello).id)
+    
+    assert_raises(RuntimeError) {
+      Post.delete_all
+    }
+
+    assert Post.exists?(posts(:hello).id)
+    assert  posts(:deleted).destroyed?
+    assert !posts(:hello).reload.destroyed?
   end
   
 end
