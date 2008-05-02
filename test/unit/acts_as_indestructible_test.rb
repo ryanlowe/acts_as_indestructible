@@ -1,4 +1,4 @@
-require 'test/unit'
+require File.dirname(__FILE__) + '/../test_helper'
 
 class ActsAsIndestructibleTest < Test::Unit::TestCase
   
