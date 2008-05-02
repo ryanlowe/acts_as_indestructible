@@ -1,0 +1,12 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+goodbye:
+  post: hello
+  body: Bye.
+deleted:
+  deleted_at: <%= 3.days.ago.to_s :db %>
+  post: hello
+  body: I regretted making this comment.
+parent:
+  post: deleted
+  body: On a deleted post.

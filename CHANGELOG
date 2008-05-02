@@ -1,4 +1,7 @@
 
+May 2
+= add Comment model
+
 May 1 2008
 = implement destroyed? instance method
 = acts_as_indestructible declaration working
