@@ -1,0 +1,8 @@
+
+deleted:
+  deleted_at: <%= 2.days.ago.to_s :db %>
+  title: Deleted Post
+  body: This post is deleted
+hello:
+  title: Hello World!
+  body: Not very original, is it?

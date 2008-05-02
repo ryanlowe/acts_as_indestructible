@@ -1,4 +1,6 @@
 
 May 1 2008
+= add Post model
+= add partial Rails skeleton to help with testing
 = basic plugin project skeleton
 = started project
