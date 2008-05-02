@@ -7,4 +7,5 @@ class PostTest < ActiveSupport::TestCase
     assert posts(:deleted).valid?
     assert posts(:hello).valid?
   end
+  
 end

@@ -2,9 +2,9 @@
 # Likewise, all the methods added will be available for all controllers.
 
 class ApplicationController < ActionController::Base
-  helper :all # include all helpers, all the time
+  #helper :all # include all helpers, all the time
 
   # See ActionController::RequestForgeryProtection for details
   # Uncomment the :secret if you're not using the cookie session store
-  protect_from_forgery # :secret => '941adad120dd8e3ef6c75b2f972792eb'
+  #protect_from_forgery # :secret => '941adad120dd8e3ef6c75b2f972792eb'
 end

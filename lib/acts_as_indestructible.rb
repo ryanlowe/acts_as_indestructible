@@ -6,15 +6,20 @@ module ActiveRecord #:nodoc:
       end
       
       module ClassMethods
+        def acts_as_indestructible(options = {})
+          extend ActiveRecord::Acts::Indestructible::SingletonMethods
+          include ActiveRecord::Acts::Indestructible::InstanceMethods
+        end
       end
       
       module SingletonMethods
       end
       
       module InstanceMethods
+        def destroyed?
+          !self[:deleted_at].nil?
+        end
       end
     end
   end
 end
-
-ActiveRecord::Base.send(:include, ActiveRecord::Acts::Indestructible)
