@@ -12,4 +12,12 @@ class ActsAsIndestructibleTest < Test::Unit::TestCase
     assert !comments(:parent).destroyed?
   end
   
+  def test_destroy
+    assert !posts(:hello).destroyed?
+    
+    posts(:hello).destroy
+    
+    assert  posts(:hello).destroyed?
+  end
+  
 end
