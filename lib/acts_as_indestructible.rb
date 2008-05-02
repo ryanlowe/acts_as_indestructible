@@ -20,6 +20,7 @@ module ActiveRecord #:nodoc:
           !self[:deleted_at].nil?
         end
         def destroy
+          return if destroyed?
           # a naive implementation for initial testing
           self[:deleted_at] = Time.now
           save

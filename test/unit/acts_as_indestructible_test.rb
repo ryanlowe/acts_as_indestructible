@@ -20,4 +20,15 @@ class ActsAsIndestructibleTest < Test::Unit::TestCase
     assert  posts(:hello).destroyed?
   end
   
+  def test_destroy_already_destroyed
+    assert posts(:deleted).destroyed?
+    time = posts(:deleted)[:deleted_at]
+    assert_not_nil time
+    
+    posts(:deleted).destroy
+    
+    assert posts(:deleted).destroyed?
+    assert_equal time, posts(:deleted)[:deleted_at]
+  end
+  
 end

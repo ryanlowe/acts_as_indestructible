@@ -1,5 +1,6 @@
 
 May 2
+= don't destroy if already destroyed
 = naively implement destroy instance method
 = add Comment model
 
