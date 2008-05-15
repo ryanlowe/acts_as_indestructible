@@ -1,4 +1,9 @@
 
+= move \app directory to \test to avoid adding models to projects that include this plugin
+
+
+=== METHODS TO OVERRIDE
+
 ActiveRecord::Base
   exists?
   find

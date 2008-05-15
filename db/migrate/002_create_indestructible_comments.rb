@@ -1,6 +1,6 @@
-class CreateComments < ActiveRecord::Migration
+class CreateIndestructibleComments < ActiveRecord::Migration
   def self.up
-    create_table :comments do |t|
+    create_table :indestructible_comments do |t|
       t.datetime :created_at
       t.datetime :updated_at
       t.datetime :deleted_at
