@@ -7,6 +7,6 @@ deleted:
   deleted_at: <%= 3.days.ago.to_s :db %>
   post: hello
   body: I regretted making this comment.
-parent:
+deleted_post:
   post: deleted
   body: On a deleted post.

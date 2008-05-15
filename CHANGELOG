@@ -1,4 +1,7 @@
 
+May 14
+= add options_excluding_deleted protected method
+
 May 2
 = don't allow self methods delete or delete_all to be called
 = test destroy_all

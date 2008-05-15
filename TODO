@@ -1,0 +1,14 @@
+
+ActiveRecord::Base
+  exists?
+  find
+  find_by_sql
+
+ActiveRecord::Calculations::ClassMethods
+  average
+  calculate
+  construct_count_options_from_args
+  count
+  maximum
+  minimum
+  sum

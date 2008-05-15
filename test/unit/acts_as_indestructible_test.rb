@@ -9,7 +9,7 @@ class ActsAsIndestructibleTest < Test::Unit::TestCase
     
     assert !comments(:goodbye).destroyed?
     assert  comments(:deleted).destroyed?
-    assert !comments(:parent).destroyed?
+    assert !comments(:deleted_post).destroyed?
   end
   
   #
