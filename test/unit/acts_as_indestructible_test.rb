@@ -1,7 +1,7 @@
 require File.dirname(__FILE__) + '/../test_helper'
 
 class ActsAsIndestructibleTest < Test::Unit::TestCase
-  fixtures :indestructible_posts, :indestructible_comments
+  fixtures :indestructible_users, :indestructible_posts, :indestructible_comments
   
   def test_fixtures_destroyed?
     assert  indestructible_posts(:deleted).destroyed?
@@ -19,7 +19,7 @@ class ActsAsIndestructibleTest < Test::Unit::TestCase
   def test_destroy
     assert !indestructible_posts(:hello).destroyed?
     
-    indestructible_posts(:hello).destroy
+    indestructible_posts(:hello).destroy(indestructible_users(:ryanlowe))
     
     assert  indestructible_posts(:hello).destroyed?
   end
@@ -29,20 +29,28 @@ class ActsAsIndestructibleTest < Test::Unit::TestCase
     time = indestructible_posts(:deleted)[:deleted_at]
     assert_not_nil time
     
-    indestructible_posts(:deleted).destroy
+    indestructible_posts(:deleted).destroy(indestructible_users(:ryanlowe))
     
     assert indestructible_posts(:deleted).destroyed?
     assert_equal time, indestructible_posts(:deleted)[:deleted_at]
   end
   
+  #
+  # destroy_all(user, conditions = nil)
+  #
+  
   def test_destroy_all
     assert  indestructible_posts(:deleted).destroyed?
     assert !indestructible_posts(:hello).destroyed?
     
-    IndestructiblePost.destroy_all
+    IndestructiblePost.destroy_all(indestructible_users(:ryanlowe))
     
     assert  indestructible_posts(:deleted).reload.destroyed?
     assert  indestructible_posts(:hello).reload.destroyed?
+  end
+  
+  def test_destroy_all_with_conditions
+    #TODO:
   end
   
   #

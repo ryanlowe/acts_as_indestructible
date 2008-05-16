@@ -5,6 +5,7 @@ goodbye:
   body: Bye.
 deleted:
   deleted_at: <%= 3.days.ago.to_s :db %>
+  deleted_by: 1
   post: hello
   body: I regretted making this comment.
 deleted_post:

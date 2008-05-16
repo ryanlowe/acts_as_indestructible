@@ -1,6 +1,8 @@
 
-= move \app directory to \test to avoid adding models to projects that include this plugin
+= test delete_all with conditions
 
+= move \app directory to \test to avoid adding models to projects that include this plugin
+= test models: need a namespace to avoid name collisions?
 
 === METHODS TO OVERRIDE
 

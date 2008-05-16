@@ -1,4 +1,8 @@
 
+May 15
+= require user parameter for destroy and destroy_all methods
+= prefix test models with Indestructible to avoid name collisions with popular model names
+
 May 14
 = add options_excluding_deleted protected method
 
