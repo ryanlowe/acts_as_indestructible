@@ -33,4 +33,18 @@ class DeleteTest < Test::Unit::TestCase
     assert !indestructible_posts(:hello).reload.destroyed?
   end
   
+  def test_delete_all_with_conditions_not_allowed
+    assert  indestructible_posts(:deleted).destroyed?
+    assert !indestructible_posts(:hello).destroyed?
+    assert IndestructiblePost.exists?(indestructible_posts(:hello).id)
+    
+    assert_raises(RuntimeError) {
+      IndestructiblePost.delete_all("1=1")
+    }
+
+    assert IndestructiblePost.exists?(indestructible_posts(:hello).id)
+    assert  indestructible_posts(:deleted).destroyed?
+    assert !indestructible_posts(:hello).reload.destroyed?
+  end
+  
 end
