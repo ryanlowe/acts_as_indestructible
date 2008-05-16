@@ -1,5 +1,6 @@
 
 May 15
+= destroy and destroy_all: check that user is not nil and has an id method
 = require user parameter for destroy and destroy_all methods
 = prefix test models with Indestructible to avoid name collisions with popular model names
 
