@@ -4,6 +4,8 @@
 = move \app directory to \test to avoid adding models to projects that include this plugin
 = test models: need a namespace to avoid name collisions with models in projects that use this plugin
 
+* Rails 2.1: named scope should exclude deleted objects
+
 === METHODS TO OVERRIDE
 
 ActiveRecord::Base
