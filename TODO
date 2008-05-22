@@ -1,4 +1,8 @@
 
+* change deleted to destroyed everywhere
+  -- can associate 'delete' with permanent, database, etc
+= support for :include_destroyed => true
+
 = test delete_all with conditions
 
 = move \app directory to \test to avoid adding models to projects that include this plugin

@@ -5,6 +5,7 @@ module ActiveRecord #:nodoc:
         base.extend(ClassMethods)
         class << base
           alias_method :super_calculate, :calculate
+          alias_method :super_exists?,   :exists?
         end
       end
       
@@ -35,19 +36,40 @@ module ActiveRecord #:nodoc:
           super_calculate(operation, column_name, options_excluding_deleted(options))
         end
         
+        def exists?(id_or_conditions, options = {})
+          include_destroyed = options[:include_destroyed]
+          return super_exists?(id_or_conditions) if include_destroyed # revert to normal behaviour
+          case id_or_conditions
+            when Integer, String
+              id_or_conditions = [destroyed_condition+" AND #{quoted_table_name}.id = ?",id_or_conditions]
+            when Array
+              id_or_conditions[0] = destroyed_condition+" AND "+id_or_conditions[0]
+            when Hash
+              include_destroyed = (id_or_conditions.has_key? :include_destroyed and id_or_conditions[:include_destroyed])
+              unless include_destroyed
+                id_or_conditions[:deleted_at] = nil
+              end
+              id_or_conditions.delete :include_destroyed
+          end
+          super_exists?(id_or_conditions)
+        end
+        
         #protected
+        
+          def destroyed_condition
+            "#{quoted_table_name}.deleted_at IS NULL"
+          end
         
           def options_excluding_deleted(options)
             options = Hash.new if options.nil?
-            deleted_condition = "deleted_at IS NULL"
             if options.has_key?(:conditions)
               if options[:conditions].instance_of? Array
-                options[:conditions][0] = deleted_condition+" AND "+options[:conditions][0]
+                options[:conditions][0] = destroyed_condition+" AND "+options[:conditions][0]
               else
-                options[:conditions] = deleted_condition+" AND "+options[:conditions]
+                options[:conditions] = destroyed_condition+" AND "+options[:conditions]
               end
             else
-              options[:conditions] = deleted_condition
+              options[:conditions] = destroyed_condition
             end
             options
           end

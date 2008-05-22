@@ -1,4 +1,7 @@
 
+May 22
+= support for exists? and with :include_destroy option
+
 May 15
 = destroy and destroy_all: check that user is not nil and has an id method
 = require user parameter for destroy and destroy_all methods
