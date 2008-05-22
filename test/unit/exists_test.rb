@@ -1,6 +1,6 @@
 require File.dirname(__FILE__) + '/../test_helper'
 
-class OptionsTest < ActiveSupport::TestCase
+class ExistsTest < ActiveSupport::TestCase
   fixtures :indestructible_posts
   
   #
@@ -40,11 +40,11 @@ class OptionsTest < ActiveSupport::TestCase
   #
   
   def test_exists_destroyed_integer
-    assert !IndestructiblePost.exists?(indestructible_posts(:deleted).id)
+    assert !IndestructiblePost.exists?(indestructible_posts(:destroyed).id)
   end
   
   def test_exists_destroyed_string
-    assert !IndestructiblePost.exists?(indestructible_posts(:deleted).id.to_s)
+    assert !IndestructiblePost.exists?(indestructible_posts(:destroyed).id.to_s)
   end
   
   def test_exists_destroyed_with_hash_conditions
@@ -60,11 +60,11 @@ class OptionsTest < ActiveSupport::TestCase
   #
   
   def test_exists_excluding_destroyed_integer
-    assert !IndestructiblePost.exists?(indestructible_posts(:deleted).id, :include_destroyed => false)
+    assert !IndestructiblePost.exists?(indestructible_posts(:destroyed).id, :include_destroyed => false)
   end
   
   def test_exists_excluding_destroyed_string
-    assert !IndestructiblePost.exists?(indestructible_posts(:deleted).id.to_s, :include_destroyed => false)
+    assert !IndestructiblePost.exists?(indestructible_posts(:destroyed).id.to_s, :include_destroyed => false)
   end
   
   def test_exists_excluding_destroyed_with_hash_conditions
@@ -80,11 +80,11 @@ class OptionsTest < ActiveSupport::TestCase
   #
   
   def test_exists_including_destroyed_integer
-    assert IndestructiblePost.exists?(indestructible_posts(:deleted).id, :include_destroyed => true)
+    assert IndestructiblePost.exists?(indestructible_posts(:destroyed).id, :include_destroyed => true)
   end
   
   def test_exists_including_destroyed_string
-    assert IndestructiblePost.exists?(indestructible_posts(:deleted).id, :include_destroyed => true)
+    assert IndestructiblePost.exists?(indestructible_posts(:destroyed).id, :include_destroyed => true)
   end
   
   def test_exists_including_destroyed_with_hash_conditions

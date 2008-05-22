@@ -20,7 +20,7 @@ class DeleteTest < Test::Unit::TestCase
   end
   
   def test_delete_all_not_allowed
-    assert  indestructible_posts(:deleted).destroyed?
+    assert  indestructible_posts(:destroyed).destroyed?
     assert !indestructible_posts(:hello).destroyed?
     assert IndestructiblePost.exists?(indestructible_posts(:hello).id)
     
@@ -29,12 +29,12 @@ class DeleteTest < Test::Unit::TestCase
     }
 
     assert IndestructiblePost.exists?(indestructible_posts(:hello).id)
-    assert  indestructible_posts(:deleted).destroyed?
+    assert  indestructible_posts(:destroyed).destroyed?
     assert !indestructible_posts(:hello).reload.destroyed?
   end
   
   def test_delete_all_with_conditions_not_allowed
-    assert  indestructible_posts(:deleted).destroyed?
+    assert  indestructible_posts(:destroyed).destroyed?
     assert !indestructible_posts(:hello).destroyed?
     assert IndestructiblePost.exists?(indestructible_posts(:hello).id)
     
@@ -43,7 +43,7 @@ class DeleteTest < Test::Unit::TestCase
     }
 
     assert IndestructiblePost.exists?(indestructible_posts(:hello).id)
-    assert  indestructible_posts(:deleted).destroyed?
+    assert  indestructible_posts(:destroyed).destroyed?
     assert !indestructible_posts(:hello).reload.destroyed?
   end
   

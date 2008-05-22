@@ -33,7 +33,7 @@ module ActiveRecord #:nodoc:
         end
         
         def calculate(operation, column_name, options = {})
-          super_calculate(operation, column_name, options_excluding_deleted(options))
+          super_calculate(operation, column_name, options_excluding_destroyed(options))
         end
         
         def exists?(id_or_conditions, options = {})
@@ -47,7 +47,7 @@ module ActiveRecord #:nodoc:
             when Hash
               include_destroyed = (id_or_conditions.has_key? :include_destroyed and id_or_conditions[:include_destroyed])
               unless include_destroyed
-                id_or_conditions[:deleted_at] = nil
+                id_or_conditions[:destroyed_at] = nil
               end
               id_or_conditions.delete :include_destroyed
           end
@@ -57,10 +57,10 @@ module ActiveRecord #:nodoc:
         #protected
         
           def destroyed_condition
-            "#{quoted_table_name}.deleted_at IS NULL"
+            "#{quoted_table_name}.destroyed_at IS NULL"
           end
         
-          def options_excluding_deleted(options)
+          def options_excluding_destroyed(options)
             options = Hash.new if options.nil?
             if options.has_key?(:conditions)
               if options[:conditions].instance_of? Array
@@ -79,14 +79,14 @@ module ActiveRecord #:nodoc:
       module InstanceMethods
         
         def destroyed?
-          !self[:deleted_at].nil?
+          !self[:destroyed_at].nil?
         end
         
         def destroy(user)
           return if user.nil? or !user.is_a? ActiveRecord::Base # ...more conditions?
           return if destroyed?
-          self[:deleted_at] = Time.now
-          self[:deleted_by] = user.id
+          self[:destroyed_at] = Time.now
+          self[:destroyed_by] = user.id
           save
         end
         

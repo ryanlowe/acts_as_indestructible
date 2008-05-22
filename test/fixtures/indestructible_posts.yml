@@ -1,6 +1,7 @@
 
-deleted:
-  deleted_at: <%= 2.days.ago.to_s :db %>
+destroyed:
+  destroyed_at: <%= 2.days.ago.to_s :db %>
+  destroyed_by: ryanlowe
   title: Destroyed Post
   body: This post is destroyed
 hello:

@@ -3,11 +3,11 @@
 goodbye:
   post: hello
   body: Bye.
-deleted:
-  deleted_at: <%= 3.days.ago.to_s :db %>
-  deleted_by: 1
+destroyed:
+  destroyed_at: <%= 3.days.ago.to_s :db %>
+  destroyed_by: ryanlowe
   post: hello
   body: I regretted making this comment.
-deleted_post:
-  post: deleted
+destroyed_post:
+  post: destroyed
   body: On a deleted post.

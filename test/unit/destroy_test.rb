@@ -16,14 +16,14 @@ class DestroyTest < Test::Unit::TestCase
   end
   
   def test_destroy_already_destroyed
-    assert indestructible_posts(:deleted).destroyed?
-    time = indestructible_posts(:deleted)[:deleted_at]
+    assert indestructible_posts(:destroyed).destroyed?
+    time = indestructible_posts(:destroyed)[:destroyed_at]
     assert_not_nil time
     
-    indestructible_posts(:deleted).destroy(indestructible_users(:ryanlowe))
+    indestructible_posts(:destroyed).destroy(indestructible_users(:ryanlowe))
     
-    assert indestructible_posts(:deleted).destroyed?
-    assert_equal time, indestructible_posts(:deleted)[:deleted_at]
+    assert indestructible_posts(:destroyed).destroyed?
+    assert_equal time, indestructible_posts(:destroyed)[:destroyed_at]
   end
   
   def test_destroy_nil_user
@@ -47,12 +47,12 @@ class DestroyTest < Test::Unit::TestCase
   #
   
   def test_destroy_all
-    assert  indestructible_posts(:deleted).destroyed?
+    assert  indestructible_posts(:destroyed).destroyed?
     assert !indestructible_posts(:hello).destroyed?
     
     IndestructiblePost.destroy_all(indestructible_users(:ryanlowe))
     
-    assert  indestructible_posts(:deleted).reload.destroyed?
+    assert  indestructible_posts(:destroyed).reload.destroyed?
     assert  indestructible_posts(:hello).reload.destroyed?
   end
   
@@ -61,22 +61,22 @@ class DestroyTest < Test::Unit::TestCase
   end
   
   def test_destroy_all_nil_user
-    assert  indestructible_posts(:deleted).destroyed?
+    assert  indestructible_posts(:destroyed).destroyed?
     assert !indestructible_posts(:hello).destroyed?
     
     IndestructiblePost.destroy_all(nil)
     
-    assert  indestructible_posts(:deleted).reload.destroyed?
+    assert  indestructible_posts(:destroyed).reload.destroyed?
     assert !indestructible_posts(:hello).reload.destroyed?
   end
   
   def test_destroy_all_not_user
-    assert  indestructible_posts(:deleted).destroyed?
+    assert  indestructible_posts(:destroyed).destroyed?
     assert !indestructible_posts(:hello).destroyed?
     
     IndestructiblePost.destroy_all(Object.new)
     
-    assert  indestructible_posts(:deleted).reload.destroyed?
+    assert  indestructible_posts(:destroyed).reload.destroyed?
     assert !indestructible_posts(:hello).reload.destroyed?
   end
   

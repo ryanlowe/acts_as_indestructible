@@ -5,8 +5,8 @@ class CreateIndestructibleUsers < ActiveRecord::Migration
       t.datetime :created_by
       t.datetime :updated_at
       t.datetime :updated_by
-      t.datetime :deleted_at
-      t.datetime :deleted_by
+      t.datetime :destroyed_at
+      t.datetime :destroyed_by
       t.string   :username
       t.boolean  :is_admin, :default => false
     end

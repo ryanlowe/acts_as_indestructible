@@ -8,32 +8,32 @@ If you find a bug, a test exposing the bug would be great.
 
   acts_as_indestructible aims to be an alternate version
   of the acts_as_paranoid plugin idea, which is to mark ActiveRecord objects
-  as deleted instead of actually deleting them from the database.
+  as destroyed instead of actually deleting them from the database.
   
-  After an object is marked as deleted it should be excluded from
+  After an object is marked as destroyed it should be excluded from
   all of the ActiveRecord method calls and act as if it
-  was actually deleted from the database.
+  was deleted from the database.
   
 = Differences from acts_as_paranoid
 
-  1. acts_as_indestructible fills the deleted_at field as well
-     as deleted_by
+  1. acts_as_indestructible fills the destroyed_at field as well
+     as destroyed_by
 
   2. destroy() and destroy_all(conditions=nil) have a
      user parameter, making them destroy(user) and
      destroy_all(user,conditions=nil).  The user
      parameter is an ActiveRecord user object and
-     the user.id is stored in the deleted_by column.
+     the user.id is stored in the destroyed_by column.
   
   3. acts_as_paranoid overrides protected and private
      ActiveRecord::Base methods which could change at any time.
-     acts_as_indestructible will attempt to provide the
+     acts_as_indestructible will work to provide the
      same function while using the public API contract that
      will not change within major Rails versions.
     
   4. delete() and delete_all() throw exceptions and are effectively
      deprecated, which prevents developers from permanently deleting
-     objects this way.
+     objects this way.  Raw SQL could still delete objects permanently.
      
 = Major plugin goals
 

@@ -5,11 +5,11 @@ class IndestructibleCommentTest < ActiveSupport::TestCase
   
   def test_fixtures
     assert indestructible_comments(:goodbye).valid?
-    assert indestructible_comments(:deleted).valid?
-    assert indestructible_comments(:deleted_post).valid?
+    assert indestructible_comments(:destroyed).valid?
+    assert indestructible_comments(:destroyed_post).valid?
     
-    assert_equal indestructible_posts(:hello),   indestructible_comments(:goodbye).post
-    assert_equal indestructible_posts(:hello),   indestructible_comments(:deleted).post
-    assert_equal indestructible_posts(:deleted), indestructible_comments(:deleted_post).post
+    assert_equal indestructible_posts(:hello),     indestructible_comments(:goodbye).post
+    assert_equal indestructible_posts(:hello),     indestructible_comments(:destroyed).post
+    assert_equal indestructible_posts(:destroyed), indestructible_comments(:destroyed_post).post
   end
 end
