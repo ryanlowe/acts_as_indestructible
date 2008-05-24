@@ -1,13 +1,16 @@
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
 
 goodbye:
-  post: hello
+  id: 3001
+  post_id: 2002 #hello
   body: Bye.
 destroyed:
+  id: 3002
+  post_id: 2002 #hello
   destroyed_at: <%= 3.days.ago.to_s :db %>
   destroyed_by: ryanlowe
-  post: hello
   body: I regretted making this comment.
 destroyed_post:
-  post: destroyed
+  id: 3003
+  post_id: 2001 #destroyed
   body: On a deleted post.

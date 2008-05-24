@@ -1,9 +1,18 @@
 
 destroyed:
+  id: 2001
   destroyed_at: <%= 2.days.ago.to_s :db %>
   destroyed_by: ryanlowe
   title: Destroyed Post
   body: This post is destroyed
 hello:
+  id: 2002
   title: Hello World!
   body: Not very original, is it?
+goodbye:
+  id: 2003
+  title: Goodbye World!
+  body: OK, maybe not.
+no_body:
+  id: 2004
+  title: Just a Title

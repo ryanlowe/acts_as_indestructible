@@ -35,6 +35,20 @@ If you find a bug, a test exposing the bug would be great.
      deprecated, which prevents developers from permanently deleting
      objects this way.  Raw SQL could still delete objects permanently.
      
+     
+= API changes from ActiveRecord::Base
+
+  destroy(user)
+  destroy_all(user,conditions=nil)
+  
+  exists?(id_or_conditions, options = {})
+  
+  DEPRECATED:
+  
+    self.delete
+    self.delete_all
+    
+     
 = Major plugin goals
 
   - test all corner cases of the ActiveRecord methods affected by this plugin

@@ -8,8 +8,8 @@ class IndestructibleCommentTest < ActiveSupport::TestCase
     assert indestructible_comments(:destroyed).valid?
     assert indestructible_comments(:destroyed_post).valid?
     
-    assert_equal indestructible_posts(:hello),     indestructible_comments(:goodbye).post
-    assert_equal indestructible_posts(:hello),     indestructible_comments(:destroyed).post
-    assert_equal indestructible_posts(:destroyed), indestructible_comments(:destroyed_post).post
+    assert_equal indestructible_posts(:hello), indestructible_comments(:goodbye).post
+    assert_equal indestructible_posts(:hello), indestructible_comments(:destroyed).post
+    assert_equal nil,                          indestructible_comments(:destroyed_post).post
   end
 end

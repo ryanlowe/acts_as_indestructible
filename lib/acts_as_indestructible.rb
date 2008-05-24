@@ -1,11 +1,19 @@
 module ActiveRecord #:nodoc:
+  
+  class Base
+    # there must be a better place to put this
+    alias_method :super_reload, :reload
+  end
+  
   module Acts #:nodoc:
     module Indestructible #:nodoc:
+      
       def self.included(base)
         base.extend(ClassMethods)
         class << base
           alias_method :super_calculate, :calculate
           alias_method :super_exists?,   :exists?
+          alias_method :super_find,      :find
         end
       end
       
@@ -38,20 +46,24 @@ module ActiveRecord #:nodoc:
         
         def exists?(id_or_conditions, options = {})
           include_destroyed = options[:include_destroyed]
-          return super_exists?(id_or_conditions) if include_destroyed # revert to normal behaviour
-          case id_or_conditions
-            when Integer, String
-              id_or_conditions = [destroyed_condition+" AND #{quoted_table_name}.id = ?",id_or_conditions]
-            when Array
-              id_or_conditions[0] = destroyed_condition+" AND "+id_or_conditions[0]
-            when Hash
-              include_destroyed = (id_or_conditions.has_key? :include_destroyed and id_or_conditions[:include_destroyed])
-              unless include_destroyed
-                id_or_conditions[:destroyed_at] = nil
-              end
-              id_or_conditions.delete :include_destroyed
+          if id_or_conditions.is_a?(Hash)
+            include_destroyed = id_or_conditions[:include_destroyed]
+            id_or_conditions.delete :include_destroyed
           end
-          super_exists?(id_or_conditions)
+          options = {}
+          options[:select]            = "#{quoted_table_name}.#{primary_key}"
+          options[:conditions]        = expand_id_conditions(id_or_conditions) # private method; possibly fragile
+          options[:include_destroyed] = include_destroyed          
+          !find(:first, options).nil?
+        end
+        
+        def find(*args)
+          options = args.extract_options!
+          include_destroyed = options[:include_destroyed]
+          return super_find(*args) if include_destroyed # revert to normal behaviour
+          options.delete :include_destroyed
+          args << options_excluding_destroyed(options)
+          super_find(*args)
         end
         
         #protected
@@ -62,9 +74,12 @@ module ActiveRecord #:nodoc:
         
           def options_excluding_destroyed(options)
             options = Hash.new if options.nil?
-            if options.has_key?(:conditions)
-              if options[:conditions].instance_of? Array
-                options[:conditions][0] = destroyed_condition+" AND "+options[:conditions][0]
+            if options.has_key?(:conditions) and !options[:conditions].nil?
+              case options[:conditions]
+                when Array
+                  options[:conditions][0] = destroyed_condition+" AND "+options[:conditions][0]
+                when Hash
+                  options[:conditions][:destroyed_at] = nil
               else
                 options[:conditions] = destroyed_condition+" AND "+options[:conditions]
               end
@@ -90,7 +105,14 @@ module ActiveRecord #:nodoc:
           save
         end
         
+        def reload(options = nil)
+          options = {} if options.nil?
+          options[:include_destroyed] = true
+          super_reload(options)
+        end
+        
       end
+      
     end
   end
 end

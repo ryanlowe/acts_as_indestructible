@@ -1,6 +1,6 @@
 
-* change deleted to destroyed everywhere
-  -- can associate 'delete' with permanent, database, etc
+= move model tests to their own subdirectory
+
 = support for :include_destroyed => true
 
 = test delete_all with conditions
@@ -8,20 +8,29 @@
 = move \app directory to \test to avoid adding models to projects that include this plugin
 = test models: need a namespace to avoid name collisions with models in projects that use this plugin
 
-* Rails 2.1: named scope should exclude deleted objects
-
 === METHODS TO OVERRIDE
 
 ActiveRecord::Base
   exists?
   find
-  find_by_sql
+  find_by_sql  (maybe?)
 
 ActiveRecord::Calculations::ClassMethods
   average
   calculate
   construct_count_options_from_args
-  count
+  count 
   maximum
   minimum
   sum
+  
+=== TECHNIQUES
+
+Associations
+  belongs_to
+  has_one
+  has_many
+  has_many :through
+  has_and_belongs_to_many
+  
+Named Scope (new in Rails 2.1)

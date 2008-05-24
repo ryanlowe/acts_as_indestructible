@@ -1,4 +1,7 @@
 
+May 23
+= support find by id
+
 May 22
 = support for exists? and with :include_destroy option
 
