@@ -1,4 +1,4 @@
-require File.dirname(__FILE__) + '/../test_helper'
+require File.dirname(__FILE__) + '/../../test_helper'
 
 class IndestructibleCommentTest < ActiveSupport::TestCase
   fixtures :indestructible_posts, :indestructible_comments

@@ -1,4 +1,4 @@
-require File.dirname(__FILE__) + '/../test_helper'
+require File.dirname(__FILE__) + '/../../test_helper'
 
 class DeleteTest < Test::Unit::TestCase
   fixtures :indestructible_users, :indestructible_posts, :indestructible_comments

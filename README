@@ -39,14 +39,14 @@ If you find a bug, a test exposing the bug would be great.
 = API changes from ActiveRecord::Base
 
   destroy(user)
-  destroy_all(user,conditions=nil)
+  destroy_all(user, conditions = nil)
   
   exists?(id_or_conditions, options = {})
   
   DEPRECATED:
   
-    self.delete
-    self.delete_all
+    ActiveRecord::Base.delete
+    ActiveRecord::Base.delete_all
     
      
 = Major plugin goals

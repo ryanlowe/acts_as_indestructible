@@ -1,7 +1,7 @@
 module ActiveRecord #:nodoc:
   
   class Base
-    # there must be a better place to put this
+    #TODO: there must be a better place to put this
     alias_method :super_reload, :reload
   end
   
@@ -67,6 +67,8 @@ module ActiveRecord #:nodoc:
         end
         
         #protected
+        
+          # if they are protected class methods they cannot be unit tested? :(
         
           def destroyed_condition
             "#{quoted_table_name}.destroyed_at IS NULL"
