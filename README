@@ -45,7 +45,7 @@ If you find a bug, a test exposing the bug would be great.
   
   DEPRECATED:
   
-    ActiveRecord::Base.delete
+    ActiveRecord::Base.delete(id)
     ActiveRecord::Base.delete_all
     
      
