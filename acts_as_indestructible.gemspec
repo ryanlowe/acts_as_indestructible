@@ -1,7 +1,7 @@
 Gem::Specification.new do |s|
   s.name = "acts_as_indestructible"
-  s.version = "0.1.0"
-  s.date = "2008-05-25"
+  s.version = "0.1.1"
+  s.date = "2008-05-26"
   s.summary = "Mark objects as destroyed instead of deleting them from the database for Ruby on Rails ActiveRecord"
   s.email = "rails@ryanlowe.ca"
   s.homepage = "http://github.com/ryanlowe/acts_as_indestructible"
