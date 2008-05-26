@@ -2,11 +2,7 @@
 = make sure the GitHub gem works
 = README: add installation instructions for gem
 
-= move model tests to their own subdirectory
-
 = support for :include_destroyed => true
-
-= test delete_all with conditions
 
 = move \app directory to \test to avoid adding models to projects that include this plugin
 = test models: need a namespace to avoid name collisions with models in projects that use this plugin
